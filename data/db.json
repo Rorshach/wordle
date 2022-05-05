@@ -1,0 +1,19 @@
+{
+    "solutions": [
+        {"id": 1, "word":  "ninja"},
+        {"id": 2, "word":  "relax"},
+        {"id": 3, "word":  "spade"},
+        {"id": 4, "word":  "pools"},
+        {"id": 5, "word":  "drives"},
+        {"id": 6, "word":  "loves"},
+        {"id": 7, "word":  "clown"},
+        {"id": 8, "word":  "trash"},
+        {"id": 9, "word":  "moist"},
+        {"id": 10, "word":  "store"},
+        {"id": 11, "word":  "felix"},
+        {"id": 12, "word":  "hello"},
+        {"id": 13, "word":  "world"},
+        {"id": 14, "word":  "dream"},
+        {"id": 15, "word":  "forgo"}
+    ]
+}

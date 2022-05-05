@@ -1,9 +1,23 @@
-import './App.css'
+import { useEffect, useState } from "react";
+
 
 function App() {
+  const[solution, setSolution] = useState(null)
+
+  useEffect(() => {
+    fetch('http://localhost:3001/solutions')
+    .then(res => res.json())
+    .then(json => {
+      const randomSolution = json[Math.floor(Math.random()*json.length)]
+      setSolution(randomSolution.word)
+    })
+  }, [setSolution])
+
   return (
     <div className="App">
-      <h1>Wordle (Lingo)</h1>
+      <h1>Wordle</h1>
+      {solution && <div>Solution: {solution}</div>}
+
     </div>
   );
 }
@@ -47,5 +61,15 @@ game process:
       -- modal to say 'well done'
     -- when the user runs out of guesses
       -- modal to say 'unlucky'
+
+  -- bonus:
+    -- track only real words
+    -- toggle refresh of new words
+    -- add timer
+    -- add past scores and history of words
+    -- allow key presses on the keypad letters
+    -- host app
+    -- use a database of 5 letter words (mongoDB)
+
 
 */
