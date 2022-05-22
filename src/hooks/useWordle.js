@@ -11,7 +11,31 @@ const useWordle = (solution) => {
     // format a guess into an array of letter objects
     // e.g. [{key: "a", color: "yellow"}]
     const formatGuess = () => {
+        console.log("formatting the current guess -  ", currentGuess)
+        
+        let solutionArray = [...solution]
+        let formattedGuess = [...currentGuess].map((l) => {
+            return {key: l, color: 'grey'}
+        })
 
+        //find any green letters
+        formattedGuess.forEach((l, i) => {
+            if (solutionArray[i] === l.key) {
+                formattedGuess[i].color = 'green'
+                solutionArray[i] = null
+            }
+        })
+
+        //find any yellow letters
+        formattedGuess.forEach((l, i) => {
+            if (solutionArray.includes(l.key) && l.color !== 'green') {
+                formattedGuess[i].color = 'yellow'
+                solutionArray[solutionArray.indexOf(l.key)] = null
+            }
+        })
+
+        return formattedGuess
+        
     }
     
     // add a new guess to the guesses state
@@ -24,6 +48,27 @@ const useWordle = (solution) => {
     // handle keyup event and track current guess
     // if user presses enter, add the new guess
     const handleKeyup = ({ key }) => {
+
+        if (key === "Enter") {
+            if (turn > 5) {
+                console.log("You've used up all your guesses")
+                return
+            }
+
+            if (history.includes(currentGuess)) {
+                console.log("You can't use the same word.")
+                return
+            }
+            
+            if (currentGuess.length !== 5) {
+                console.log("Word must be 5 characters long")
+                return
+            }
+
+            //Check guess
+            const formatted = formatGuess()
+            console.log(formatted)
+        }
         
         if (key === "Backspace") {
             setCurrentGuess((prev) => {
@@ -31,7 +76,7 @@ const useWordle = (solution) => {
             })
             return
         }
-        
+
         if (/^[A-Za-z]$/.test(key)) {
             if (currentGuess.length < 5) {
                 setCurrentGuess((prev) => {
