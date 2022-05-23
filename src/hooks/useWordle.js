@@ -11,8 +11,6 @@ const useWordle = (solution) => {
     // format a guess into an array of letter objects
     // e.g. [{key: "a", color: "yellow"}]
     const formatGuess = () => {
-        console.log("formatting the current guess -  ", currentGuess)
-        
         let solutionArray = [...solution]
         let formattedGuess = [...currentGuess].map((l) => {
             return {key: l, color: 'grey'}
